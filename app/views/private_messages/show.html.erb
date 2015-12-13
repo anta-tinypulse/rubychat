@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row" style="margin: 40px 0 40px 0">
+    <div class="col-sm-1">
+      <img src="<%= User.find(@message.sender_id).image_url %>" style="height: 50px; width: 50px">
+    </div>
+    <div class="col-sm-8">
+      <h4 style="margin-top: 0">From: <%= User.find(@message.sender_id).name %></h4>
+      <p>
+        <%= @message.content %>
+      </p>
+    </div>
+  </div>
+  <%= link_to "Back", private_messages_path, class: "btn btn-primary" %>
+</div>

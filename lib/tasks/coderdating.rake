@@ -1,4 +1,4 @@
-namespace :coderdating do
+namespace :rubychat do
   desc "Create five female users and five male users"
   task generate_users: :environment do
     fem_url = 'https://randomuser.me/api?results=5&gender=female'

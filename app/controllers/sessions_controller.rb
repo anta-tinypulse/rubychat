@@ -2,10 +2,10 @@ class SessionsController < ActionController::Base
   def create
     @user = User.find_by_email(params[:user][:email])
 
-    if @user.authenticate(params[:user][:password])
+    if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       flash[:success] = "Welcome back!"
-      redirect_to users_path
+      redirect_to private_messages_path
     else
       flash[:error] = "Email or password is incorrect!"
       redirect_to welcome_login_path

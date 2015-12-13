@@ -27,20 +27,18 @@
             <a class="nav-link" href="<%= welcome_login_path %>">Sign In</a>
           <% end %>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= users_path %>">Browse Profiles</a>
-        </li>
+        <% if signed_in %>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= private_messages_path %>">
+                Messages (<%= message_count %>)
+              </a>
+            </li>
+        <% end %>
       </ul>
     </div>
   </nav>
 
   <%= yield %>
-
-  <footer class="footer-12">
-    <div class="container">
-        Made with <%= image_tag('heart') %> in Sai Gon
-    </div>
-  </footer>    
 
 </body>
 </html>

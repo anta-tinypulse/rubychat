@@ -1,0 +1,63 @@
+<div class="container">
+  <div style="margin: 40px 0 40px 0">
+    <% @messages.each do |m| %>
+        <div class="row" style="margin: 10px 0 10px 0">
+          <div class="col-sm-1">
+            <img src="<%= User.find(m.sender_id).image_url %>" style="height: 50px; width: 50px">
+          </div>
+          <div class="col-sm-8">
+            <h4 style="margin-top: 0">From: <%= User.find(m.sender_id).name %></h4>
+            <p>
+              <% if m.content.length > 80 %>
+                  <%= m.content[0..80] %>...
+              <% else %>
+                  <%= m.content %>
+              <% end %>
+            </p>
+            <%= link_to "Read more", private_message_path(m) %>
+          </div>
+          <div class="col-sm-3" style="padding: 10px">
+            <% unless m.unread? %>
+              <%= image_tag 'check', width: 20, height: 20 %>
+            <% end %>
+          </div>
+        </div>
+        <hr/>
+    <% end %>
+  </div>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal">New Message</button>
+  <%= link_to "Add Friends", users_path, class: "btn btn-primary" %>
+  <%= link_to "Sent Message", new_private_message_path, class: "btn btn-primary" %>
+</div>
+
+<!-- Modal -->
+<div id="messageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New Message</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(PrivateMessage.new) do |f| %>
+            <div class="form-group">
+              <%= f.label :receiver_id %>
+              <%= f.select(:receiver_id, Hash[@friends.map { |f| [f.name, f.id] }], {}, {class: "form-control"}) %>
+            </div>
+            <div class="form-group">
+              <div class="form-group">
+                <%= f.label :content %>
+                <%= f.text_area "content", class: "form-control", rows: 5 %>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <%= f.submit 'Send', class: 'btn btn-info' %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

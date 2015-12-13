@@ -5,9 +5,11 @@ Rails.application.routes.draw do
 
   get 'welcome/login' => 'users#login'
   get 'logout' => 'sessions#logout'
+  get 'addfriend' => 'users#add_friend'
 
   resources :users
   resources :sessions
+  resources :private_messages
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
