@@ -25,6 +25,7 @@ The following **required** functionality is complete:
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
+
 https://drive.google.com/open?id=0BwwwHC2oIXDMTE8yMTJWNW5zU1E
 
 ## Notes
