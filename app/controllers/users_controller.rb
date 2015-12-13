@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to users_path
+      redirect_to private_messages_path
     else
       redirect_to welcome_index_path
     end
