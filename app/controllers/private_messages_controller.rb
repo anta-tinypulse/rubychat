@@ -33,6 +33,6 @@ class PrivateMessagesController < ApplicationController
   end
 
   def sent_messages
-    @messages = PrivateMessage.where(receiver_id: current_user.id).order(:created_at)
+    @messages = PrivateMessage.where(sender_id: current_user.id).order(:created_at)
   end
 end

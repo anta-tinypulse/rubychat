@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'welcome/login' => 'users#login'
   get 'logout' => 'sessions#logout'
   get 'addfriend' => 'users#add_friend'
+  get 'sentmessages' => 'private_messages#sent_messages'
 
   resources :users
   resources :sessions

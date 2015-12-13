@@ -1,0 +1,24 @@
+<div class="container">
+  <div style="margin: 40px 0 40px 0">
+    <% @messages.each do |m| %>
+        <div class="row" style="margin: 10px 0 10px 0">
+          <div class="col-sm-1">
+            <img src="<%= User.find(m.receiver_id).image_url %>" style="height: 50px; width: 50px">
+          </div>
+          <div class="col-sm-8">
+            <h4 style="margin-top: 0">To: <%= User.find(m.receiver_id).name %></h4>
+            <p>Oops! As stated in the assignment, you are not allowed to read your own message!</p>
+          </div>
+          <div class="col-sm-3" style="padding: 10px">
+            <% if m.unread? %>
+              Unread
+            <% else %>
+              <%= m.updated_at %>
+            <% end %>
+          </div>
+        </div>
+        <hr/>
+    <% end %>
+  </div>
+  <%= link_to "Back", private_messages_path, class: "btn btn-primary" %>
+</div>
